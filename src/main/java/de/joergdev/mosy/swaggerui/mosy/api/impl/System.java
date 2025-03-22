@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import de.joergdev.mosy.api.APIConstants;
+import de.joergdev.mosy.api.model.BaseData;
 import de.joergdev.mosy.api.response.EmptyResponse;
 import de.joergdev.mosy.api.response.system.LoadBaseDataResponse;
 import de.joergdev.mosy.api.response.system.LoginResponse;
@@ -46,6 +47,15 @@ public class System
                          @ApiResponse(responseCode = "500", description = "Internal server error")})
   @GetMapping("/load-basedata")
   public ResponseEntity<LoadBaseDataResponse> loadBaseData(@RequestHeader("Authorization") String token)
+  {
+    return ResponseEntity.ok().build(); // Dummy implementation
+  }
+
+  @Operation(summary = "Import data", description = "Import interfaces and methods")
+  @ApiResponses(value = {@ApiResponse(responseCode = "200", description = "Data imported successfully"),
+                         @ApiResponse(responseCode = "500", description = "Internal server error")})
+  @PostMapping("/import-data")
+  public ResponseEntity<EmptyResponse> importData(@RequestHeader("Authorization") String token, BaseData apiBaseData)
   {
     return ResponseEntity.ok().build(); // Dummy implementation
   }
